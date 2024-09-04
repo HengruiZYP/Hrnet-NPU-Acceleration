@@ -4,7 +4,8 @@
 # 二、效果预览
 可视化结果:
 
-![](res/vis.jpeg)
+<img src="vedio/hrnet.gif" width="40%">
+
 
 # 三、使用方式
 ## 3.1 模型训练
