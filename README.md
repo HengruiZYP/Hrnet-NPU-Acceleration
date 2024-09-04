@@ -22,7 +22,8 @@ aistudio创建项目, 选择paddle2.4.0版本。
 本库已含训练好的模型，并进行了加速处理。
 
 __请参考如下版本__：
-![](res/aistudio_version.jpg)
+![](hrnet-python/res/aistudio_version.jpg)
+
 模型训练完成得到model.pdmodel和mode.pdiparams模型文件。
 
 ## 3.2 模型转换
@@ -59,11 +60,11 @@ __模型部署基于板卡进行__
 ```bash
 cd /home/edgeboard/
 #下载模型
-git clone https://github.com/HengruiZYP/Yolov3-NPU-Acceleration.git
+git clone https://github.com/HengruiZYP/Hrnet-NPU-Acceleration.git
 ```
 
 ### Step3：
-安装依赖库，确保当前位于/home/edgeboard/yolov3-python目录下：
+安装依赖库，确保当前位于/home/edgeboard/Hrnet-NPU-Acceleration/hrnet-python目录下：
 ```bash
 sudo pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
@@ -86,6 +87,7 @@ sudo pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
     - mode: 固定为"professional"
     - model_dir：传输至板卡的模型文件(model.json、model.nb、model.onnx、model.po)的目录
     - model_file: 传输至板卡的四个模型文件的文件名，固定为model
+  
   键盘输入“:q”，回车退出。
 
 ### Step6：
