@@ -16,6 +16,9 @@ aistudio创建项目, 选择paddle2.4.0版本。
 
 ### 3.1.2 模型训练、评估、导出
 模型生产过程请参考项目：[aistudio项目链接](https://aistudio.baidu.com/projectdetail/7161083?contributionType=1&sUid=1318783&shared=1&ts=1701160332830)
+本
+
+本库已含训练好的模型，并进行了加速处理。
 
 __请参考如下版本__：
 ![](res/aistudio_version.jpg)
@@ -28,29 +31,66 @@ __请参考如下版本__：
 ### 3.2.2 其他模型
 若需要转换其他自行训练的模型，请联系百度技术支持同学：ext_edgeboard01@baidu.com
 
-## 3.3 运行模型推理示例代码
-__模型部署基于板卡进行__             
 
-首先安装依赖库，确保当前位于/home/edgeboard/hrnet-python目录下：
+## 3.3 模型部署
+__模型部署基于板卡进行__
+
+### Step1：
+- 安装opencv依赖库及EdgeBoard DK-1A推理工具PPNC(如已安装，可跳过此步)
+  打开终端，执行以下命令安装PPNC。
+  ```bash
+  sudo apt update
+  sudo apt install libopencv-dev -y
+  sudo apt install python3-opencv -y
+  sudo apt install ppnc-runtime -y
+  ```
+- 安装PaddlePaddle(如已安装，可跳过此步)
+  打开终端，执行以下命令安装PaddlePaddle。
+  ```bash
+  mkdir Downloads
+  cd Downloads
+  wget https://bj.bcebos.com/pp-packages/whl/paddlepaddle-2.4.2-cp38-cp38-linux_aarch64.whl 
+  sudo pip install paddlepaddle-2.4.2-cp38-cp38-linux_aarch64.whl -i https://pypi.tuna.tsinghua.edu.cn/simple
+  ```
+
+### Step2：
+下载项目文件
+```bash
+cd /home/edgeboard/
+#下载模型
+git clone https://github.com/HengruiZYP/Yolov3-NPU-Acceleration.git
+```
+
+### Step3：
+安装依赖库，确保当前位于/home/edgeboard/yolov3-python目录下：
 ```bash
 sudo pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
-## 3.3.1 ppnc推理
-- 首先将模型转换阶段产生的model.nb、model.json模型文件传输至板卡，置于/home/edgeboar/hrnet-python/model文件夹
-- 修改models文件夹下的config.json,如下：
-    ```json
-    {
-        "mode": "professional",
-        "model_dir": "./models", 
-        "model_file": "model"        
-    }
-    ```
-    - mode: 固定为"professional"
-    - model_dir：传输至板卡的model.nb、model.json模型文件的目录
-    - model_file: 模型文件名，固定为model
+### Step4：
+- 配置config.json文件（无更改可略过）
+  终端输入以下命令，进入config.json所在目录，并使用vim查看内容。
+  ```bash
+  cd /home/edgeboard/Hrnet-NPU-Acceleration/hrnet-python/
+  vim config.json
+  ```
+- 默认已配置完成，可直接使用，如有自定义，可另行更改配置内容。
+  ```json
+  {
+      "mode": "professional",
+      "model_dir": "./model", 
+      "model_file": "model"
+  }
+  ```
 
+    - mode: 固定为"professional"
+    - model_dir：传输至板卡的模型文件(model.json、model.nb、model.onnx、model.po)的目录
+    - model_file: 传输至板卡的四个模型文件的文件名，固定为model
+  键盘输入“:q”，回车退出。
+
+### Step6：
+尝试ppnc推理
 - 运行推理脚本
-    确保当前位于/home/edgeboar/hrnet-python目录下：
+    确保当前位于/home/edgeboard/Hrnet-NPU-Acceleration/hrnet-python/目录下：
 
     ```shell
     sudo python3 tools/infer_demo.py \
@@ -68,6 +108,31 @@ sudo pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
         - test_image: 测试图片路径
         - visualize: 是否可视化，若置为True，则会在该路径下生成vis.jpg渲染结果
         - with_profile: 是否统计前处理、模型推理、后处理各阶段耗时，若置为True，会输出各阶段耗时
+
+  
+- 查看工程目录，若得到结果如下：vis.jpg
+  
+  证明模型已经部署成功
+  
+  <img src="hrnet_python/vis.jpg" width="40%">
+
+### Step7：
+接入摄像头识别
+- 插入摄像头
+  ```bash
+  ls /dev/video*
+  #查看摄像头是否正常
+  ```
+  正常情况应该如下：
+  
+  <img src="vedio/image.jpeg" width="40%">
+  
+- 摄像头的代码在infer_demo_vedio.py，输入如下指令，即可开启摄像头识别
+  ```bash
+  cd /home/edgeboard/Hrnet-NPU-Acceleration/hrnet-python/
+  sudo python3 tools/infer_demo_vedio.py --visualize
+
+
 
 ## 3.3.2 paddle、ppnc对比测试
 - 模型文件 
