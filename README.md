@@ -114,7 +114,7 @@ sudo pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
   
   证明模型已经部署成功
   
-  <img src="hrnet_python/vis.jpg" width="40%">
+  <img src="hrnet-python/vis.jpg" width="30%">
 
 ### Step7：
 接入摄像头识别
