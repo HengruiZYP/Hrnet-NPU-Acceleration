@@ -17,7 +17,7 @@ aistudio创建项目, 选择paddle2.4.0版本。
 
 ### 3.1.2 模型训练、评估、导出
 模型生产过程请参考项目：[aistudio项目链接](https://aistudio.baidu.com/projectdetail/7161083?contributionType=1&sUid=1318783&shared=1&ts=1701160332830)
-本
+
 
 本库已含训练好的模型，并进行了加速处理。
 
