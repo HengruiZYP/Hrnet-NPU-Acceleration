@@ -9,6 +9,9 @@
 
 # 三、使用方式
 ## 3.1 模型训练
+
+本库已含训练好的模型，并进行了加速处理。
+
 __模型生产基于aistudio平台进行__，确保已有aistudio账号。
 
 ### 3.1.1 环境准备
@@ -18,8 +21,6 @@ aistudio创建项目, 选择paddle2.4.0版本。
 ### 3.1.2 模型训练、评估、导出
 模型生产过程请参考项目：[aistudio项目链接](https://aistudio.baidu.com/projectdetail/7161083?contributionType=1&sUid=1318783&shared=1&ts=1701160332830)
 
-
-本库已含训练好的模型，并进行了加速处理。
 
 __请参考如下版本__：
 ![](hrnet-python/res/aistudio_version.jpg)
