@@ -146,7 +146,7 @@ sudo pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 
 
-## 3.3.2 paddle、ppnc对比测试
+## 3.4 paddle、ppnc对比测试
 - 模型文件 
     首先将模型生产阶段产生的xx.pdmodel，xx.pdiparams模型文件传输至板卡，置于./model文件夹
 
@@ -170,17 +170,17 @@ sudo pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
         - test_dir: 测试图片文件夹路径
         - output_dir: 存放结果文件，默认为"./output_dir"，该路径下会生成paddle_result_pickle、paddle_result_images、ppnc_result_pickle、ppnc_result_images目录，分别存放paddle和ppnc的pickle格式结果和可视化的结果数据。
 
-## 3.3.3 实际项目部署
+## 3.5 实际项目部署
 实际用于项目中时，仅需要部分脚本，因此需要提取部署包并置于实际的项目代码中运行。
 
-### 3.3.3.1 提取部署包
+### 3.5.1 提取部署包
 确保当前位于/home/edgeboard/hrnet-python, 执行以下命令导出用于项目部署的zip包：
 ```shell
 sudo ./extract.sh
 ```
 执行成功后会在当前目录生成hrnet_deploy.zip压缩包。
 
-### 3.3.3.2 使用部署包
+### 3.5.2 使用部署包
 - 准备ppnc模型及配置文件  
     将模型转换阶段生成的model.nb、model.json模型文件拷贝到项目能访问的目录，并参照3.3.1的方式编写模型配置文件config.json。
 
