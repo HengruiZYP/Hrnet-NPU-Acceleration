@@ -12,7 +12,7 @@
 
 paddle是CPU推理，ppnc是NPU推理
 
-<img src="vedio/diff.png" width="40%">
+<img src="vedio/diff.png" width="30%">
 
 # 三、使用方式
 ## 3.1 模型训练
