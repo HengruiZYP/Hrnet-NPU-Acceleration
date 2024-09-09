@@ -6,9 +6,19 @@
 
 <img src="vedio/hrnet.gif" width="40%">
 
+在经过NPU加速之后，推理时间缩短了45倍左右
+
+如下图所示 运行test.py进行对比
+
+paddle是CPU推理，ppnc是NPU推理
+
+<img src="vedio/diff.png" width="40%">
 
 # 三、使用方式
 ## 3.1 模型训练
+
+本库已含训练好的模型，并进行了加速处理。
+
 __模型生产基于aistudio平台进行__，确保已有aistudio账号。
 
 ### 3.1.1 环境准备
@@ -19,10 +29,10 @@ aistudio创建项目, 选择paddle2.4.0版本。
 模型生产过程请参考项目：[aistudio项目链接](https://aistudio.baidu.com/projectdetail/7161083?contributionType=1&sUid=1318783&shared=1&ts=1701160332830)
 
 
-本库已含训练好的模型，并进行了加速处理。
 
 __请参考如下版本__：
-![](res/aistudio_version.jpg)
+![](hrnet-python/res/aistudio_version.jpg)
+
 模型训练完成得到model.pdmodel和mode.pdiparams模型文件。
 
 ## 3.2 模型转换
@@ -59,11 +69,11 @@ __模型部署基于板卡进行__
 ```bash
 cd /home/edgeboard/
 #下载模型
-git clone https://github.com/HengruiZYP/Yolov3-NPU-Acceleration.git
+git clone https://github.com/HengruiZYP/Hrnet-NPU-Acceleration.git
 ```
 
 ### Step3：
-安装依赖库，确保当前位于/home/edgeboard/yolov3-python目录下：
+安装依赖库，确保当前位于/home/edgeboard/Hrnet-NPU-Acceleration/hrnet-python目录下：
 ```bash
 sudo pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
@@ -86,6 +96,7 @@ sudo pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
     - mode: 固定为"professional"
     - model_dir：传输至板卡的模型文件(model.json、model.nb、model.onnx、model.po)的目录
     - model_file: 传输至板卡的四个模型文件的文件名，固定为model
+  
   键盘输入“:q”，回车退出。
 
 ### Step6：
