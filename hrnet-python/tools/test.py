@@ -130,11 +130,12 @@ def main():
     for i in os.listdir(path):
         print(i)
         img = cv2.imread(os.path.join(path, i))
-
-        time0 = time.time()
+        #ppnc detect
+        start_time_ppnc = time.time()
         res1 = m.predict_image(img)
-        time1 = time.time()
-        print(f'ppnc time: {time1 - time0}')
+        end_time_ppnc = time.time()
+        ppnc_time = end_time_ppnc - start_time_ppnc
+        
         cv2.imwrite(
             os.path.join(os.path.join(output_dir, "paddle_result_images"), i),
             VisKeypointDetection(img, res1),
@@ -147,10 +148,15 @@ def main():
             "wb",
         ) as file:
             pickle.dump(res1, file)
-        time2 = time.time()
+        
+        #paddle detect
+        start_time_paddle = time.time()
         res2 = paddle_infer.predict_image(img)
-        time3 = time.time()
-        print(f'paddle time: {time3 - time2}\n')
+        end_time_paddle = time.time()
+        paddle_time = end_time_paddle - start_time_paddle
+
+        print(f'ppnc   time: {ppnc_time}')
+        print(f'paddle time: {paddle_time}\n')
 
         cv2.imwrite(
             os.path.join(os.path.join(output_dir, "ppnc_result_images"), i),
