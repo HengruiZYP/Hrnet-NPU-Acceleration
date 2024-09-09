@@ -152,7 +152,7 @@ sudo pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 - 执行测试
 
-    确保当前位于/home/edgeboard/hrnet-python目录下：
+    确保当前位于/home/Hrnet-NPU-Acceleration/edgeboard/hrnet-python目录下：
 
     ```shell
     sudo python3 tools/test.py \
@@ -174,7 +174,7 @@ sudo pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 实际用于项目中时，仅需要部分脚本，因此需要提取部署包并置于实际的项目代码中运行。
 
 ### 3.5.1 提取部署包
-确保当前位于/home/edgeboard/hrnet-python, 执行以下命令导出用于项目部署的zip包：
+确保当前位于/home/Hrnet-NPU-Acceleration/edgeboard/hrnet-python, 执行以下命令导出用于项目部署的zip包：
 ```shell
 sudo ./extract.sh
 ```
