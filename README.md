@@ -2,6 +2,9 @@
 该部署代码用于姿态检测任务，基于PaddleDetection2.5进行模型训练，paddle版本使用2.4.0
 
 # 二、效果预览
+
+<img src="vedio/EdgeBoard_DK-1A.png" width="70%">
+
 可视化结果:
 
 <img src="vedio/hrnet.gif" width="40%">
